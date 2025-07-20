@@ -1,22 +1,23 @@
-import { useEffect, useState } from 'react';
-import API from '../api/axios'; // path to your axios instance
+import { useEffect, useState } from "react";
+import API from "../api/axios";
 
 function Dashboard() {
-  const [users, setUsers] = useState([]);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
-    API.get('/users/')
-      .then(res => setUsers(res.data))
-      .catch(err => console.error('API error:', err));
+    API.get("/user/verify-status/") // Example API
+      .then((res) => setData(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Registered Users</h1>
+    <div className="min-h-screen p-6 bg-gray-50">
+      <h2 className="text-2xl font-bold mb-4">Verification Status</h2>
       <ul className="space-y-2">
-        {users.map(user => (
-          <li key={user.id} className="p-2 bg-gray-100 rounded">
-            {user.name}
+        {data.map((item, index) => (
+          <li key={index} className="bg-white shadow rounded p-4">
+            <p><strong>Name:</strong> {item.name}</p>
+            <p><strong>Status:</strong> {item.status}</p>
           </li>
         ))}
       </ul>
