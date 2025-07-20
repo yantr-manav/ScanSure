@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import VerifyForm from './pages/VerifyForm';
 import Dashboard from './pages/Dashboard';
-/*
-  NOTE: On Windows, file imports are case-insensitive, but on other systems (like Linux), they are case-sensitive.
-  Your file is named 'Dashboard.js', but you are importing './pages/dashboard'.
-  Change the import to match the actual file name:
-*/
+
 function App() {
   return (
-    <div>
-      <Dashboard />
-      Hello, ScanSure!
-      <img src={logo} className="App-logo" alt="logo" />
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/verify" element={<VerifyForm />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 }
 
 export default App;
-
-
-
